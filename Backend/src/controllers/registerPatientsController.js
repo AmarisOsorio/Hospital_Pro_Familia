@@ -44,7 +44,7 @@ registerPatientsController.register = async (req , res) => {
             //1) Quien lo envia
             from: config.email.email_user,
             //2) QUien lo recibe
-            to: email, //esta es la variable es con la que se esta registrando el cliente
+            to: correo, //esta es la variable es con la que se esta registrando el cliente
             //Asunto
             subject: "Verificación de Correo",
             //cuerpo del correo
@@ -57,7 +57,7 @@ registerPatientsController.register = async (req , res) => {
             console.log ("Correo enviado")
         })
 
-        res.json({message: "Client succesfully registered! Please verify your email with the code send"})
+        res.json({message: "Patient succesfully registered! Please verify your email with the code send"})
 
     } catch (error) {
         res.json({message: "ERROR" + error})
@@ -71,7 +71,7 @@ registerPatientsController.verifyCodeEmail = async (req , res ) => {
     try {
         //Verificar y decodificar el token
         const decoded = jsonwebtoken.verify(token , config.JWT.secret)
-        const {email , verificationCode: storedCode} = decoded;
+        const {correo , verificationCode: storedCode} = decoded;
 
         //Comparar el código que enviamos al correo con el que el usuario escribe
         if(verificationCode !== storedCode){
@@ -79,9 +79,9 @@ registerPatientsController.verifyCodeEmail = async (req , res ) => {
         }
 
         //Cambiamos el estado de "isVErified" a true
-        const client = await clientsModel.findOne({email});
-        client.isVerified = true;
-        await client.save();
+        const patient = await patientsModel.findOne({correo});
+        patient.isVerified = true;
+        await patient.save();
 
         res.json({message: "Email verified successfully!"})
 
