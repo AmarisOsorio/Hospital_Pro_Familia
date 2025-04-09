@@ -52,13 +52,13 @@ registerPatientsController.register = async (req , res) => {
             El código vence en dos horas`
         }  
 
-        // --------- ME DA ERROR -------------//
         transporter.sendMail(mailOption, (error,info) =>{
-            if(error) return res.json({message: "Error"})
-            console.log ("Correo enviado")
+            if(error) return res.json({message: "Error" + error})
+            console.log ("Correo enviado", info.response)
+            res.json({message: "Patient succesfully registered! Please verify your email with the code send"})
         })
 
-        res.json({message: "Patient succesfully registered! Please verify your email with the code send"})
+        
 
     } catch (error) {
         res.json({message: "ERROR" + error})

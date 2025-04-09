@@ -21,6 +21,6 @@ export const config = {
     },
     email: {
         email_user: process.env.EMAIL_USER,
-        email_pass: process.env.EMAIL_PASS
+        email_pass: process.env.EMAIL_PASSWORD
     }
 };
