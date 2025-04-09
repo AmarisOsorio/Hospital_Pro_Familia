@@ -3,7 +3,9 @@ import express from "express";
 import cookieParser from "cookie-parser";
 
 import registerDoctorsRoute from "./src/routes/registerDoctors.js";
-import doctorsRoute from "./src/routes/doctors.js" 
+import doctorsRoute from "./src/routes/doctors.js";
+import registerPatientsRoute from "./src/routes/registerPatients.js"
+import patientsRoute from "./src/routes/patients.js";
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(cookieParser()); // Que acepte cookies
 // ----- RUTAS ----- //
 app.use("/api/doctorsRegister" , registerDoctorsRoute);
 app.use("/api/doctors" , doctorsRoute);
+app.use("/api/patientsRegister" , registerPatientsRoute);
+app.use("/api/patients" , patientsRoute);
 
 
 
