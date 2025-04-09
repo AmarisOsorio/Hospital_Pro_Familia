@@ -3,8 +3,8 @@
      fecha
      hora
      motivo
-     doctorAsignado
-     pacienteAsignado
+     idDoctor
+     idPatient
 */
 
 import { Schema , model } from "mongoose"; 
