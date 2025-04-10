@@ -7,6 +7,8 @@ import doctorsRoute from "./src/routes/doctors.js";
 import registerPatientsRoute from "./src/routes/registerPatients.js"
 import patientsRoute from "./src/routes/patients.js";
 import appointmentRoute from "./src/routes/appointment.js"
+import loginRoute from "./src/routes/login.js"
+import logoutRoute from "./src/routes/logout.js";
 
 const app = express();
 
@@ -20,6 +22,9 @@ app.use("/api/doctors" , doctorsRoute);
 app.use("/api/patientsRegister" , registerPatientsRoute);
 app.use("/api/patients" , patientsRoute);
 app.use("/api/appointment" , appointmentRoute);
+app.use("/api/login" , loginRoute);
+app.use("/api/logout" , logoutRoute);
+
 
 
 
